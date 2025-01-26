@@ -1,6 +1,6 @@
-####################################################################
-# Create IAM user and policies for Continuous Deplouy (CD) account #
-####################################################################
+###################################################################
+# Create IAM user and policies for Continuous Deploy (CD) account #
+###################################################################
 
 resource "aws_iam_user" "cd" {
   name = "recipe-app-api-cd"
@@ -23,10 +23,10 @@ data "aws_iam_policy_document" "tf_backend" {
 
   statement {
     effect  = "Allow"
-    actions = ["s3:GetObject", "s3:PutObect", "s3:DeleteObject"]
+    actions = ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"]
     resources = [
-      "arn:aws::s3:::${var.tf_state_bucket}/tf-state-deploy/*",
-      "arn:aws::s3:::${var.tf_state_bucket}/tf-state-deploy-env/*"
+      "arn:aws:s3:::${var.tf_state_bucket}/tf-state-deploy/*",
+      "arn:aws:s3:::${var.tf_state_bucket}/tf-state-deploy-env/*"
     ]
   }
 
@@ -34,7 +34,7 @@ data "aws_iam_policy_document" "tf_backend" {
     effect = "Allow"
     actions = [
       "dynamodb:DescribeTable",
-      "dynamobd:GetItem",
+      "dynamodb:GetItem",
       "dynamodb:PutItem",
       "dynamodb:DeleteItem"
     ]
